@@ -1,0 +1,23 @@
+<sdf version="1.4">
+  <model name="model_creator">
+    <link name="link_00">
+      <pose>0 0 0 1.57079632679 0 0</pose>
+      <collision name="link_00_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0015</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="link_00_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.0015</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
