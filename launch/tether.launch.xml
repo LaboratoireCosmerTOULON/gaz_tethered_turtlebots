@@ -3,13 +3,13 @@
   <arg name="object_name"/>
   <arg name="init_pose"/>
 
-  <!-- SDF source file -->
-  <arg name="sdf_file" default="$(find tether_description)/models/tether.sdf" />
-  <arg name="tether_description" value="$(arg sdf_file)" />
+  <!-- Convert an xacro and put on parameter server -->
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find tether_description)/models/tether.urdf.xacro'" />
+  <param name="robot_description" command="$(arg urdf_file)" />
   
   <!-- Gazebo model spawner -->
-  <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
-        args=" -unpause -sdf -database tether_description -model $(arg object_name)"/>
-  
-</launch>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+        args="$(arg init_pose) -unpause -urdf -robot_namespace robot2 -param robot_description -model $(arg object_name)"/>
 
+
+</launch>

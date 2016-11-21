@@ -24,8 +24,9 @@
   </include>
 
   <!-- spawn the tether -->
-  <include file="$(find gaz_multi)/launch/tether.launch.xml">
+  <include file="$(find gaz_multi)/launch/tether_sdf.launch.xml">
+	<param name="tf_prefix" value="tether" />
     <arg name="object_name" value="tether" />
-    <arg name="init_pose" value="-x 0 -y 0 -z 0" />
+    <arg name="init_pose" value="-x 2 -y 2 -z 0" />
   </include>
 </launch>
