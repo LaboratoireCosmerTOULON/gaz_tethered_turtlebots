@@ -13,7 +13,7 @@
   </include>
 
   <!-- spawn tethered turtlebots -->
-  <include file="$(find gaz_multi)/launch/tethered_turtlebots.launch.xml">
+  <include file="$(find gaz_tethered_turtlebots)/launch/tethered_turtlebots.launch.xml">
     <arg name="model_name" value="tethered_turtlebots" />
   </include>
 
