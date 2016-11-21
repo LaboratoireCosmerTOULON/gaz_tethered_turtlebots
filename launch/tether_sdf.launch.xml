@@ -1,0 +1,13 @@
+<launch>
+  <!-- launcher arguments -->
+  <arg name="object_name"/>
+  <arg name="init_pose"/>
+  <arg name="sdf_file" default="$(find tether_description)/models/teste_gazebo.sdf" />
+
+  
+  <!-- Gazebo model spawner -->
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
+        args="$(arg init_pose) -unpause -sdf -file $(arg sdf_file) -model $(arg object_name)"/>
+
+
+</launch>
