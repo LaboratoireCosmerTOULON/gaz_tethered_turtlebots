@@ -3,13 +3,6 @@ import lxml.etree as ltr
 import numpy as np
 np.set_printoptions(precision=3)
 
-def create_box(root,x,y,z):
-    GEOMETRY = ltr.SubElement(root,"geometry")
-    BOX = ltr.SubElement(GEOMETRY,"box")
-    SIZE = ltr.SubElement(BOX,"size")
-    SIZE.text = str(x) +" "+str(y)+" "+str(z)
-    return root
-    
 def create_cylinder(root,radius,length):
     GEOMETRY = ltr.SubElement(root,"geometry")
     CYLINDER = ltr.SubElement(GEOMETRY,"cylinder")
@@ -19,40 +12,54 @@ def create_cylinder(root,radius,length):
     LENGTH.text = str(length)
     return root
 
-def create_rope_link(root,link_name,x,y,z,phi,theta,psi,radius,length):
-    LINK = ltr.SubElement(root, "link", name=link_name)
-    POSE = ltr.SubElement(LINK, "pose")
-    POSE.text = str(x) +" "+str(y)+" "+str(z)+" "+ str(math.pi/2) +" "+ str(0) +" "+str(0)
-    COLLISION = ltr.SubElement(LINK, "collision", name=link_name + "_collision")
-    create_cylinder(COLLISION,radius,length)
-    VISUAL = ltr.SubElement(LINK, "visual",name=link_name+"_visual")
-    create_cylinder(VISUAL,radius,length)
+def create_inertial(root,rope_link):
+    POSE = ltr.SubElement(root, "pose")
+    pose = rope_link.inertial.pose
+    POSE.text 	= str(pose.x) +" "+str(pose.y)+" "+str(pose.z)+" "+ str(pose.phi) +" "+ str(pose.theta) +" "+str(pose.psi)
+    MASS	= ltr.SubElement(root,"mass")
+    MASS.text = str(rope_link.inertial.mass)
+    INERTIA	= ltr.SubElement(root,"inertia")
+    IXX	= ltr.SubElement(INERTIA,"ixx")
+    IXX.text = str(rope_link.inertial.ixx)
+    IXY	= ltr.SubElement(INERTIA,"ixy")
+    IXY.text = str(rope_link.inertial.ixy)
+    IXZ	= ltr.SubElement(INERTIA,"ixz")
+    IXZ.text = str(rope_link.inertial.ixz)
+    IYY	= ltr.SubElement(INERTIA,"iyy")
+    IYY.text = str(rope_link.inertial.iyy)
+    IYZ	= ltr.SubElement(INERTIA,"iyz")
+    IYZ.text = str(rope_link.inertial.iyz)
+    IZZ	= ltr.SubElement(INERTIA,"izz")
+    IZZ.text = str(rope_link.inertial.izz)
+    return root
+    
+def create_surface(root,rope_link):
+    SURFACE = ltr.SubElement(root,"surface")
+    CONTACT = ltr.SubElement(SURFACE,"contact")
+    ODE = ltr.SubElement(CONTACT,"ode")
+    MIN_DEPTH = ltr.SubElement(ODE,"min_depth")
+    MIN_DEPTH.text = str(rope_link.min_depth)
+    FRICTION = ltr.SubElement(SURFACE,"contact")
+    ODEf = ltr.SubElement(CONTACT,"ode")
+    MU = ltr.SubElement(ODEf,"mu")
+    MU.text = str(rope_link.mu)
+    MU2 = ltr.SubElement(ODEf,"mu2")
+    MU2.text = str(rope_link.mu2)
     return root
 
-def create_drum(root,drum_name,x,y,z,radius,width):
-    LINK = ltr.SubElement(root, "link", name=drum_name)
-    SELF_COLLIDE = ltr.SubElement(LINK, "self_collide")
-    SELF_COLLIDE.text = "1"
-    POSE = ltr.SubElement(LINK, "pose")
-    POSE.text = str(x) +" "+str(y)+" "+str(z)+" "+ str(math.pi/2) +" "+ str(0) +" "+str(0)
-    COLLISION = ltr.SubElement(LINK, "collision",name=drum_name+"_collision")
-    create_cylinder(COLLISION,radius,width)
-    VISUAL = ltr.SubElement(LINK, "visual",name=drum_name+"_visual")
-    create_cylinder(VISUAL,radius,width)
+def create_rope_link(root,rope_link):
+    LINK		= ltr.SubElement(root, "link", name=rope_link.name)
+    POSE 		= ltr.SubElement(LINK, "pose")
+    POSE.text 	= str(rope_link.pose.x) +" "+str(rope_link.pose.y)+" "+str(rope_link.pose.z)+" "+ str(rope_link.pose.phi) +" "+ str(rope_link.pose.theta) +" "+str(rope_link.pose.psi)
+    INERTIAL	= ltr.SubElement(LINK, "inertial")
+    create_inertial(INERTIAL,rope_link)
+    COLLISION 	= ltr.SubElement(LINK, "collision", name=rope_link.name + "_collision")
+    create_cylinder(COLLISION,rope_link.radius,rope_link.length)
+    create_surface(COLLISION, rope_link)
+    VISUAL 		= ltr.SubElement(LINK, "visual",name=rope_link.name+"_visual")
+    create_cylinder(VISUAL,rope_link.radius,rope_link.length)
     return root
-    
-def create_base(root,base_name,x,y,z,dx,dy,dz):
-    LINK = ltr.SubElement(root, "link", name=base_name)
-    SELF_COLLIDE = ltr.SubElement(LINK, "self_collide")
-    SELF_COLLIDE.text = "0"
-    POSE = ltr.SubElement(LINK, "pose")
-    POSE.text = str(x) +" "+str(y)+" "+str(z)+" "+ str(0)+" "+str(0)+" "+str(0)
-    COLLISION = ltr.SubElement(LINK, "collision",name=base_name+"_collision")
-    create_box(COLLISION,dx,dy,dz)
-    VISUAL = ltr.SubElement(LINK, "visual",name=base_name+"_visual")
-    create_box(VISUAL,dx,dy,dz)
-    return root
-    
+
 def create_rev_joint(root,joint_name,parent,child,pose,xyz):
     JOINT = ltr.SubElement(root, "joint", type="revolute", name=joint_name)
     POSE = ltr.SubElement(JOINT, "pose")
@@ -66,15 +73,4 @@ def create_rev_joint(root,joint_name,parent,child,pose,xyz):
     XYZ.text = str(xyz)
     return root
     
-def add_pad(root,pad_name,coords,dx,dy,dz):
-    LINK = ltr.SubElement(root, "link", name=pad_name)
-    SELF_COLLIDE = ltr.SubElement(LINK, "self_collide")
-    SELF_COLLIDE.text = "1"
-    POSE = ltr.SubElement(LINK, "pose")
-    POSE.text = str(coords[0]) +" "+str(coords[1])+" "+str(coords[2])+" "+ str(coords[3])+" "+str(coords[4])+" "+str(coords[5])
-    COLLISION = ltr.SubElement(LINK, "collision",name=pad_name+"_collision")
-    create_box(COLLISION,dx,dy,dz)
-    VISUAL = ltr.SubElement(LINK, "visual",name=pad_name+"_visual")
-    create_box(VISUAL,dx,dy,dz)
-    return root
     
