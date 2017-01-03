@@ -1,0 +1,7 @@
+<launch>
+
+  <!-- turtlebot teleop -->
+   <remap from="/cmd_vel_mux/input/teleop" to="/turtle1/cmd_vel"/>
+   <include file="$(find turtlebot_teleop)/launch/keyboard_teleop.launch"/>
+
+</launch>
