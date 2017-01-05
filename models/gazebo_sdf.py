@@ -139,7 +139,6 @@ def create_joint_physics(root):
     CFM.text = str(1)
     return root
 
-
 def create_univ_joint(root,rope_joint):
     JOINT = ltr.SubElement(root, "joint", type="universal", name=rope_joint.name)
     POSE = ltr.SubElement(JOINT, "pose")
@@ -152,7 +151,6 @@ def create_univ_joint(root,rope_joint):
     create_axis(JOINT,rope_joint)
     create_axis2(JOINT,rope_joint)
     create_joint_physics(JOINT)
-
     return root
     
     

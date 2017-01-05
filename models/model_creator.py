@@ -7,6 +7,7 @@ The model configuration can be changed editing the file settings.config
 @author: Matheus Laranjeira
 """
 import lxml.etree as ltr
+from io import StringIO, BytesIO
 import decimal
 from gazebo_sdf import *
 from math import log10
@@ -118,6 +119,19 @@ file.close
 ROOT = ltr.Element("sdf", version="1.4")
 MODEL = ltr.SubElement(ROOT, "model", name = "tethered_turtlebots")
 
+# Add turtlebot1 model
+turtle1_filemodel = "turtlebot1.txt"
+with open(turtle1_filemodel, 'r') as myfile:
+	data = myfile.read()
+
+
+TURTLE1 = ltr.XML("<root>data</root>")
+MODEL.text = str(ltr.tostring(TURTLE1))
+print ltr.tostring(TURTLE1)
+
+#print data
+
+    
 # Create link object
 linkname = "link_0"
 frame_i = Pose(0.1350, 0.0000, 0.4100, 0.0000, 0.0000, 0.0000)

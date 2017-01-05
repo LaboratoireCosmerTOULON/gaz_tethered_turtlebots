@@ -5,6 +5,7 @@
 
   <!-- Gazebo model spawner -->
   <arg name="sdf_file" value="$(find gaz_tethered_turtlebots)/models/model_test.sdf" />
+
 <!--
   <arg name="sdf_file" value="$(find gaz_tethered_turtlebots)/models/tethered_turtlebots.sdf" />
 -->
