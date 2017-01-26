@@ -696,9 +696,10 @@
             </clip>
           </camera>
           <plugin name='kinect_camera_controller' filename='libgazebo_ros_openni_kinect.so'>
+            <robotNamespace>/turtle1</robotNamespace>
             <cameraName>camera</cameraName>
             <alwaysOn>true</alwaysOn>
-            <updateRate>30</updateRate>
+            <updateRate>10</updateRate>
             <imageTopicName>rgb/image_raw</imageTopicName>
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
@@ -712,9 +713,9 @@
             <distortion_t1>0.0</distortion_t1>
             <distortion_t2>0.0</distortion_t2>
             <pointCloudCutoff>0.4</pointCloudCutoff>
-            <robotNamespace>/turtle1</robotNamespace>
           </plugin>
-          <pose>-0.11 0 0.30 0 -0 0</pose>
+		  <!-- Pose from real Trutlebot -->
+          <pose>-0.118 -0.01 0.285 0 -0 0</pose>
         </sensor>
         <velocity_decay>
           <linear>0</linear>
@@ -897,7 +898,9 @@
             <lower>-1e+16</lower>
             <upper>1e+16</upper>
           </limit>
-          <dynamics/>
+       	  <!--dynamics>
+            <damping>0.1</damping>
+          </dynamics-->
         </axis>
       </joint>
       <link name='wheel1_right_link'>
@@ -967,7 +970,9 @@
             <lower>-1e+16</lower>
             <upper>1e+16</upper>
           </limit>
-          <dynamics/>
+       	  <!--dynamics>
+            <damping>0.1</damping>
+          </dynamics-->
         </axis>
       </joint>
       <static>0</static>
@@ -1681,9 +1686,10 @@
             </clip>
           </camera>
           <plugin name='kinect_camera_controller' filename='libgazebo_ros_openni_kinect.so'>
+            <robotNamespace>/turtle2</robotNamespace>
             <cameraName>camera</cameraName>
             <alwaysOn>true</alwaysOn>
-            <updateRate>30</updateRate>
+            <updateRate>10</updateRate>
             <imageTopicName>rgb/image_raw</imageTopicName>
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
@@ -1697,7 +1703,6 @@
             <distortion_t1>0.0</distortion_t1>
             <distortion_t2>0.0</distortion_t2>
             <pointCloudCutoff>0.4</pointCloudCutoff>
-            <robotNamespace>/turtle2</robotNamespace>
           </plugin>
           <pose>-0.118 0 0.2812 0 -0 0</pose>
         </sensor>
@@ -1882,7 +1887,9 @@
             <lower>-1e+16</lower>
             <upper>1e+16</upper>
           </limit>
-          <dynamics/>
+       	  <!--dynamics>
+            <damping>0.1</damping>
+          </dynamics-->
         </axis>
       </joint>
       <link name='wheel2_right_link'>
@@ -1952,7 +1959,9 @@
             <lower>-1e+16</lower>
             <upper>1e+16</upper>
           </limit>
-          <dynamics/>
+       	  <!--dynamics>
+            <damping>0.1</damping>
+          </dynamics-->
         </axis>
       </joint>
       <static>0</static>
