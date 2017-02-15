@@ -1,1 +1,1 @@
-Package with launch files for simulation of two turtlebots connected by a orange rope
+Package based on Gazebo for simulation of two turtlebots connected by a orange rope

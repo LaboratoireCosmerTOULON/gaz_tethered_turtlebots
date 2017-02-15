@@ -30,5 +30,8 @@
 # Temporary files
 *~
 
+# SDF
+*.sdf
+
 # Python
 *.pyc
