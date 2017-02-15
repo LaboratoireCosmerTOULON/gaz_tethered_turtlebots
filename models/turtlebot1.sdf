@@ -1,3 +1,8 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <model name="turtlebot1">
+<static>false</static>
+
      <!-- TURTLEBOT 1 --> 
      <link name='base_foot1print'>
         <pose>0 0 0 0 -0 0</pose>
@@ -982,3 +987,5 @@
         <imu_name>imu</imu_name>
         <robotNamespace>/turtle1</robotNamespace>
       </plugin>
+  </model>
+</sdf>
