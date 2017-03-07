@@ -12,7 +12,6 @@ def create_cylinder(root,radius,length):
     LENGTH.text = str(length)
     return root
     
-    
 def create_sphere(root,radius):
     GEOMETRY = ltr.SubElement(root,"geometry")
     SPHERE = ltr.SubElement(GEOMETRY,"sphere")
@@ -91,6 +90,13 @@ def create_visual_sphere(root,rope_link):
     MATERIAL = ltr.SubElement(root, "material")
     create_material(MATERIAL,rope_link)
     return root
+    
+def create_velocity_decay(root,rope_link):
+	LINEAR	= ltr.SubElement(root,"linear")
+	LINEAR.text = str(0.1)
+	ANGULAR	= ltr.SubElement(root,"angular")
+	ANGULAR.text = str(0.1)
+	return
 
 def create_rope_link(root,rope_link):
     LINK		= ltr.SubElement(root, "link", name=rope_link.name)
@@ -104,6 +110,8 @@ def create_rope_link(root,rope_link):
     create_visual(VISUAL,rope_link)
     VISUAL_SPH	= ltr.SubElement(LINK, "visual",name=rope_link.name+"_visual_sphere")
     create_visual_sphere(VISUAL_SPH,rope_link)
+    VEL_DECAY	= ltr.SubElement(LINK, "velocity_decay")
+    create_velocity_decay(VEL_DECAY,rope_link)
     return root
 
 def create_axis(root,rope_joint):
@@ -135,8 +143,12 @@ def create_axis2(root,rope_joint):
 def create_joint_physics(root):
     PHYSICS = ltr.SubElement(root,"physics")
     ODE = ltr.SubElement(PHYSICS,"ode")
-    CFM = ltr.SubElement(ODE,"cfm_damping")
-    CFM.text = str(1)
+    ISD = ltr.SubElement(ODE,"implicit_spring_damper")
+    ISD.text = str(1)
+    CFM = ltr.SubElement(ODE,"cfm")
+    CFM.text = str(0)
+    ERP = ltr.SubElement(ODE,"erp")
+    ERP.text = str(0.8)
     return root
 
 def create_univ_joint(root,rope_joint):
@@ -150,6 +162,30 @@ def create_univ_joint(root,rope_joint):
     CHILD.text = str(rope_joint.child)
     create_axis(JOINT,rope_joint)
     create_axis2(JOINT,rope_joint)
+    create_joint_physics(JOINT)
+    return root
+    
+def create_ball_joint(root,rope_joint):
+    JOINT = ltr.SubElement(root, "joint", type="ball", name=rope_joint.name)
+    POSE = ltr.SubElement(JOINT, "pose")
+    pose = rope_joint.pose
+    POSE.text 	= str(pose.x) +" "+str(pose.y)+" "+str(pose.z)+" "+ str(pose.phi) +" "+ str(pose.theta) +" "+str(pose.psi)
+    PARENT = ltr.SubElement(JOINT,"parent")
+    PARENT.text = str(rope_joint.parent)
+    CHILD = ltr.SubElement(JOINT,"child")
+    CHILD.text = str(rope_joint.child)
+    create_joint_physics(JOINT)
+    return root
+    
+def create_prismatic_joint(root,rope_joint):
+    JOINT = ltr.SubElement(root, "joint", type="ball", name=rope_joint.name+"_pris")
+    POSE = ltr.SubElement(JOINT, "pose")
+    pose = rope_joint.pose
+    POSE.text 	= str(pose.x) +" "+str(pose.y)+" "+str(pose.z)+" "+ str(pose.phi) +" "+ str(pose.theta) +" "+str(pose.psi)
+    PARENT = ltr.SubElement(JOINT,"parent")
+    PARENT.text = str(rope_joint.parent)
+    CHILD = ltr.SubElement(JOINT,"child")
+    CHILD.text = str(rope_joint.child)
     create_joint_physics(JOINT)
     return root
     

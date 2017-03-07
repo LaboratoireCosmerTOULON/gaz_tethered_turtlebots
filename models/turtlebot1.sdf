@@ -1,11 +1,9 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <model name="turtlebot1">
-<static>false</static>
-
-     <!-- TURTLEBOT 1 --> 
-     <link name='base_foot1print'>
-        <pose>0 0 0 0 -0 0</pose>
+ 	<!-- TURTLEBOT 1 --> 
+      <link name='base_foot1print'>
+      <pose>0 0 0 0 -0 0</pose>
         <inertial>
           <pose>0.00947362 2.50779e-05 0.014919 0 -0 0</pose>
           <mass>2.4723</mass>
@@ -696,6 +694,7 @@
             </clip>
           </camera>
           <plugin name='kinect_camera_controller' filename='libgazebo_ros_openni_kinect.so'>
+            <robotNamespace>/turtle1</robotNamespace>
             <cameraName>camera</cameraName>
             <alwaysOn>true</alwaysOn>
             <updateRate>10</updateRate>
@@ -712,9 +711,9 @@
             <distortion_t1>0.0</distortion_t1>
             <distortion_t2>0.0</distortion_t2>
             <pointCloudCutoff>0.4</pointCloudCutoff>
-            <robotNamespace>/turtle1</robotNamespace>
           </plugin>
-          <pose>-0.118 0 0.2812 0 -0 0</pose>
+ 		  <!-- Pose from real Trutlebot -->
+          <pose>-0.118 -0.01 0.285 0 -0 0</pose>
         </sensor>
         <velocity_decay>
           <linear>0</linear>
@@ -897,7 +896,9 @@
             <lower>-1e+16</lower>
             <upper>1e+16</upper>
           </limit>
-          <dynamics/>
+       	  <!--dynamics>
+            <damping>0.1</damping>
+          </dynamics-->
         </axis>
       </joint>
       <link name='wheel1_right_link'>
@@ -967,14 +968,16 @@
             <lower>-1e+16</lower>
             <upper>1e+16</upper>
           </limit>
-          <dynamics/>
+       	  <!--dynamics>
+            <damping>0.1</damping>
+          </dynamics-->
         </axis>
       </joint>
       <static>0</static>
-      <plugin name='kobuki_controller' filename='libgazebo_ros_diff_drive.so'>
+      <plugin name='kobuki1_controller' filename='libgazebo_ros_diff_drive.so'>
         <publish_tf>1</publish_tf>
-        <leftJoint>wheel1_left_joint</leftJoint>
-        <rightJoint>wheel1_right_joint</rightJoint>
+        <leftJoint>wheel1_right_joint</leftJoint>
+        <rightJoint>wheel1_left_joint</rightJoint>
         <wheelSeparation>.230</wheelSeparation>
         <wheelDiameter>0.070</wheelDiameter>
         <wheelTorque>1.0</wheelTorque>

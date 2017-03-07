@@ -112,36 +112,50 @@ from math import log10
 
 if __name__ == "__main__":
 	
+	# Absolute dir the script is in
+	script_dir = os.path.dirname(__file__)
+
 	# Read setting from file
-	script_dir = os.path.dirname(__file__) # absolute dir the script is in
 	filename = "settings.config"
 	file_path = os.path.join(script_dir, filename)
-	file = open(file_path,'r')
-	for line in file:
-		if '\n' == line[-1]:
+	f = open(file_path,'r')
+	for line in f:
+		if ('\n' == line[-1]):
 			line = line[:-1]
 		exec(line.split(' = ',2)[0] + ' = ' + line.split(' = ',2)[1])
-	file.close
+	f.close
 
-
+	# Read Turtlebot1 model from file
+	turtle1_dataList = []
+	filename = "turtlebot1.sdf"
+	file_path = os.path.join(script_dir, filename)
+	with open(file_path, 'r') as f:
+		# Skips text before the beginning of the interesting block:
+		for line in f:
+			if line.strip() == '<sdf version="1.4">':
+				break
+		# Reads text until the end of the block:
+		for line in f:  # This keeps reading the file
+			if line.strip() == '</sdf>':
+				break
+			turtle1_dataList.append(line[:-1]) # do not take last elem "\n"
+	f.close
+	# Converto from list to string
+	turtle1data = "\n".join(turtle1_dataList)
+	
+	# Create model SDF header
 	ROOT = ltr.Element("sdf", version="1.4")
 	MODEL = ltr.SubElement(ROOT, "model", name = "tethered_turtlebots")
+	MODEL.append(ltr.fromstring(turtle1data)) # insert turtlebot1 model
+	MODEL.append(ltr.Comment("TETHER"))
 
-	"""
-	# Add turtlebot1 model
-	file_path = os.path.join(script_dir, "turtlebot1.sdf")
-	with open(file_path, 'r') as myfile:
-		data = myfile.read()
-	TURTLE1 = ltr.XML("<root>data</root>")
-	MODEL.text = str(ltr.tostring(TURTLE1))
-	print ltr.tostring(TURTLE1)
-	"""
+
 		
 	# Create link object
 	linkname = "link_0"
-	frame_i = Pose(0.1350, 0.0000, 0.4100, 0.0000, 0.0000, 0.0000)
-	frame_o = Pose(0.0000, 0.0000, 0.0000, 0.0000, 1.5708, 0.0000)
-	frame_s = Pose(-0.5*length, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000)
+	frame_i = Pose(0.1350, 0.0000, 0.4100, 0.0000, 0.0000, 0.0000) # initial
+	frame_o = Pose(0.0000, 0.0000, 0.0000, 0.0000, 1.5708, 0.0000) # rope elem center
+	frame_s = Pose(-0.5*length, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000) # sphere
 	inertial = Inertial(frame_o,mass,ixx,ixy,ixz,iyy,iyz,izz)
 	color = Color(1, 0.25, 0)
 	rope_link = Rope_link(linkname, frame_i, radius, length, min_depth, mu, mu2, inertial, color)
@@ -180,19 +194,25 @@ if __name__ == "__main__":
 		# Update pose to add following link in next loop
 		rope_link.pose.x = rope_link.pose.x + rope_link.length
 		# Add joint to model
-		create_univ_joint(MODEL,rope_joint)
+		create_ball_joint(MODEL,rope_joint)
 	# Add final joint attaching the rope to the leader
 	rope_joint.name = "joint_"+str(nelem)
 	rope_joint.pose = Pose(0.5*length, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000)
 	rope_joint.parent = "base_foot2print"
 	rope_joint.child = rope_link.name
-	create_univ_joint(MODEL,rope_joint)
+	create_ball_joint(MODEL,rope_joint)
 
 
 	# WRITE THE MODEL
 	file_out = os.path.join(script_dir, output)
 	f = open(file_out, 'w')
 	f.write('<?xml version="1.0" ?>\n')
-	f.write(ltr.tostring(ROOT, pretty_print=True))
+	# remove undesired tags (extra <model></model> from turtlebots - 1 and 2)
+	ROOTstr = ltr.tostring(ROOT, pretty_print=True)
+	strlist = ROOTstr.split("\n")
+	del strlist[2], strlist[991]
+	ROOTstr = "\n".join(strlist)
+	# write model
+	f.write(ROOTstr)
 	f.close()
 
