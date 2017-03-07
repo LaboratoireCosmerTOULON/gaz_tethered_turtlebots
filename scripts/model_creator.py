@@ -58,7 +58,6 @@ class Sphere:
 	pose = Pose
 	radius = 0.0
 
-
 	def __init__(self, pose, radius):
 		self.pose = pose
 		self.radius = radius
@@ -102,6 +101,25 @@ class Rope_joint:
 		self.lowlim = lowlim
 		self.upplim = upplim
 		self.damping = damping
+		
+def readTurtleModel(filepath):
+	
+	# Read turtlebot model from file
+	turtle_dataList = []
+	with open(filepath, 'r') as f:
+		# Skips text before the beginning of the interesting block:
+		for line in f:
+			if line.strip() == '<sdf version="1.4">':
+				break
+		# Reads text until the end of the block:
+		for line in f:  # This keeps reading the file
+			if line.strip() == '</sdf>':
+				break
+			turtle_dataList.append(line[:-1]) # do not take last elem "\n"
+	f.close
+	# Converto from list to string
+	turtledata = "\n".join(turtle_dataList)
+	return turtledata
 
 import os	
 import lxml.etree as ltr
@@ -125,32 +143,23 @@ if __name__ == "__main__":
 		exec(line.split(' = ',2)[0] + ' = ' + line.split(' = ',2)[1])
 	f.close
 
-	# Read Turtlebot1 model from file
-	turtle1_dataList = []
-	filename = "turtlebot1.sdf"
-	file_path = os.path.join(script_dir, filename)
-	with open(file_path, 'r') as f:
-		# Skips text before the beginning of the interesting block:
-		for line in f:
-			if line.strip() == '<sdf version="1.4">':
-				break
-		# Reads text until the end of the block:
-		for line in f:  # This keeps reading the file
-			if line.strip() == '</sdf>':
-				break
-			turtle1_dataList.append(line[:-1]) # do not take last elem "\n"
-	f.close
-	# Converto from list to string
-	turtle1data = "\n".join(turtle1_dataList)
+	# Read turtlebot1 model from file
+	file_path = os.path.join(script_dir, "turtlebot1.sdf")
+	turtle1data = readTurtleModel(file_path)
 	
-	# Create model SDF header
+	# Read turtlebot2 model from file
+	file_path = os.path.join(script_dir, "turtlebot2.sdf")
+	turtle2data = readTurtleModel(file_path)
+	
+	
+	# Create SDF header and insert turtlebots models
 	ROOT = ltr.Element("sdf", version="1.4")
 	MODEL = ltr.SubElement(ROOT, "model", name = "tethered_turtlebots")
 	MODEL.append(ltr.fromstring(turtle1data)) # insert turtlebot1 model
+	MODEL.append(ltr.fromstring(turtle2data)) # insert turtlebot2 model
 	MODEL.append(ltr.Comment("TETHER"))
 
 
-		
 	# Create link object
 	linkname = "link_0"
 	frame_i = Pose(0.1350, 0.0000, 0.4100, 0.0000, 0.0000, 0.0000) # initial
@@ -202,17 +211,18 @@ if __name__ == "__main__":
 	rope_joint.child = rope_link.name
 	create_ball_joint(MODEL,rope_joint)
 
-
+	# remove undesired tags (extra <model></model> from turtlebots - 1 and 2)
+	ROOTstr = ltr.tostring(ROOT, pretty_print=True)
+	strlist = ROOTstr.split("\n")
+	indices = 2,992,993,1983
+	strlist = [i for j, i in enumerate(strlist) if j not in indices]
+	
+	#del strlist[2,991,992], strlist[991]
+	ROOTstr = "\n".join(strlist)
 	# WRITE THE MODEL
 	file_out = os.path.join(script_dir, output)
 	f = open(file_out, 'w')
 	f.write('<?xml version="1.0" ?>\n')
-	# remove undesired tags (extra <model></model> from turtlebots - 1 and 2)
-	ROOTstr = ltr.tostring(ROOT, pretty_print=True)
-	strlist = ROOTstr.split("\n")
-	del strlist[2], strlist[991]
-	ROOTstr = "\n".join(strlist)
-	# write model
 	f.write(ROOTstr)
 	f.close()
 
