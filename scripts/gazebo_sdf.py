@@ -93,9 +93,9 @@ def create_visual_sphere(root,rope_link):
     
 def create_velocity_decay(root,rope_link):
 	LINEAR	= ltr.SubElement(root,"linear")
-	LINEAR.text = str(0.1)
+	LINEAR.text = str(0.07)
 	ANGULAR	= ltr.SubElement(root,"angular")
-	ANGULAR.text = str(0.1)
+	ANGULAR.text = str(0.07)
 	return
 
 def create_rope_link(root,rope_link):
@@ -114,6 +114,19 @@ def create_rope_link(root,rope_link):
     create_velocity_decay(VEL_DECAY,rope_link)
     return root
 
+def create_axis_X(root,rope_joint,name):
+    AXIS = ltr.SubElement(root,name)
+    XYZ = ltr.SubElement(AXIS,"xyz")
+    XYZ.text = "1 0 0"
+    LIMIT = ltr.SubElement(AXIS,"limit")
+    LOWER = ltr.SubElement(LIMIT,"lower")
+    LOWER.text = str(-0.001)
+    UPPER = ltr.SubElement(LIMIT,"upper")
+    UPPER.text = str(0.001)
+    DYNAM = ltr.SubElement(AXIS,"dynamics")
+    DAMPI = ltr.SubElement(DYNAM,"damping")
+    DAMPI.text = str(rope_joint.damping)
+    
 def create_axis(root,rope_joint):
     AXIS = ltr.SubElement(root,"axis")
     XYZ = ltr.SubElement(AXIS,"xyz")
@@ -178,15 +191,16 @@ def create_ball_joint(root,rope_joint):
     return root
     
 def create_prismatic_joint(root,rope_joint):
-    JOINT = ltr.SubElement(root, "joint", type="ball", name=rope_joint.name+"_pris")
+    JOINT = ltr.SubElement(root, "joint", type="prismatic", name=rope_joint.name+"_pris")
     POSE = ltr.SubElement(JOINT, "pose")
     pose = rope_joint.pose
-    POSE.text 	= str(pose.x) +" "+str(pose.y)+" "+str(pose.z)+" "+ str(pose.phi) +" "+ str(pose.theta) +" "+str(pose.psi)
+    POSE.text 	= str(pose.x)+" "+str(pose.y)+" "+str(pose.z)+" "+ str(pose.phi) +" "+ str(pose.theta) +" "+str(pose.psi)
     PARENT = ltr.SubElement(JOINT,"parent")
     PARENT.text = str(rope_joint.parent)
     CHILD = ltr.SubElement(JOINT,"child")
     CHILD.text = str(rope_joint.child)
-    create_joint_physics(JOINT)
+    create_axis_X(JOINT,rope_joint,"axis")
+    #create_joint_physics(JOINT)
     return root
     
     

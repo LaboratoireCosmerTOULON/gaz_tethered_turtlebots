@@ -84,6 +84,23 @@ class Rope_link:
 		self.mu2 = mu2
 		self.inertial = inertial
 		self.color = color
+
+class Joint:
+	name = ""
+	parent = "parent"
+	child = "child"
+	pose = Pose
+	lowlim = -1.57
+	upplim = 1.57
+	damping = 0.1
+	cfm_damping = 1
+
+	def __init__(self, name, parent, child, pose, lowlim, upplim, damping):
+		self.name = name
+		self.pose = pose
+		self.lowlim = lowlim
+		self.upplim = upplim
+		self.damping = damping
 		
 class Rope_joint:
 	name = ""
@@ -204,23 +221,27 @@ if __name__ == "__main__":
 		rope_link.pose.x = rope_link.pose.x + rope_link.length
 		# Add joint to model
 		create_ball_joint(MODEL,rope_joint)
+		#create_univ_joint(MODEL,rope_joint)
+		#create_prismatic_joint(MODEL,rope_joint)
+
 	# Add final joint attaching the rope to the leader
 	rope_joint.name = "joint_"+str(nelem)
 	rope_joint.pose = Pose(0.5*length, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000)
 	rope_joint.parent = "base_foot2print"
 	rope_joint.child = rope_link.name
 	create_ball_joint(MODEL,rope_joint)
+	#create_univ_joint(MODEL,rope_joint)
+	#create_prismatic_joint(MODEL,rope_joint)
 
 	# remove undesired tags (extra <model></model> from turtlebots - 1 and 2)
 	ROOTstr = ltr.tostring(ROOT, pretty_print=True)
 	strlist = ROOTstr.split("\n")
 	indices = 2,992,993,1983
 	strlist = [i for j, i in enumerate(strlist) if j not in indices]
-	
-	#del strlist[2,991,992], strlist[991]
 	ROOTstr = "\n".join(strlist)
+	
 	# WRITE THE MODEL
-	file_out = os.path.join(script_dir, output)
+	file_out = os.path.join(script_dir, "../models/"+output)
 	f = open(file_out, 'w')
 	f.write('<?xml version="1.0" ?>\n')
 	f.write(ROOTstr)
