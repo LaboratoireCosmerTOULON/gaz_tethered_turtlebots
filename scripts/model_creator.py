@@ -138,6 +138,25 @@ def readTurtleModel(filepath):
 	turtledata = "\n".join(turtle_dataList)
 	return turtledata
 
+def readTurtleModel2(filepath):
+	
+	# Read turtlebot model from file
+	turtle_dataList = []
+	with open(filepath, 'r') as f:
+		# Skips text before the beginning of the interesting block:
+		for line in f:
+			if line.strip() == '<model name="turtlebot1">':
+				break
+		# Reads text until the end of the block:
+		for line in f:  # This keeps reading the file
+			if line.strip() == '</model>':
+				break
+			turtle_dataList.append(line[:-1]) # do not take last elem "\n"
+	f.close
+	# Converto from list to string
+	turtledata = "\n".join(turtle_dataList)
+	return turtledata
+
 import os	
 import lxml.etree as ltr
 from io import StringIO, BytesIO
@@ -161,11 +180,11 @@ if __name__ == "__main__":
 	f.close
 
 	# Read turtlebot1 model from file
-	file_path = os.path.join(script_dir, "turtlebot1.sdf")
+	file_path = os.path.join(script_dir, "../models/turtlebot1.sdf")
 	turtle1data = readTurtleModel(file_path)
 	
 	# Read turtlebot2 model from file
-	file_path = os.path.join(script_dir, "turtlebot2.sdf")
+	file_path = os.path.join(script_dir, "../models/turtlebot2.sdf")
 	turtle2data = readTurtleModel(file_path)
 	
 	
@@ -201,7 +220,7 @@ if __name__ == "__main__":
 			rope_link.name = rope_link.name.replace(rope_link.name[-1],str(i))
 			rope_joint.name = rope_joint.name.replace(rope_joint.name[-1],str(i))
 			# if first joint, parent link is robot1 attachment point (base_foot1print)
-			rope_joint.parent = "base_foot1print"
+			rope_joint.parent = "base_foot2print"
 		elif(i > 0 and log10(i) <= 1.0):
 			# joint parent link is rope previous link
 			rope_joint.parent = rope_link.name
@@ -220,6 +239,7 @@ if __name__ == "__main__":
 		# Update pose to add following link in next loop
 		rope_link.pose.x = rope_link.pose.x + rope_link.length
 		# Add joint to model
+		#create_rev_joint(MODEL,rope_joint)
 		create_ball_joint(MODEL,rope_joint)
 		#create_univ_joint(MODEL,rope_joint)
 		#create_prismatic_joint(MODEL,rope_joint)
@@ -227,8 +247,9 @@ if __name__ == "__main__":
 	# Add final joint attaching the rope to the leader
 	rope_joint.name = "joint_"+str(nelem)
 	rope_joint.pose = Pose(0.5*length, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000)
-	rope_joint.parent = "base_foot2print"
+	rope_joint.parent = "base_foot1print"
 	rope_joint.child = rope_link.name
+	#create_rev_joint(MODEL,rope_joint)
 	create_ball_joint(MODEL,rope_joint)
 	#create_univ_joint(MODEL,rope_joint)
 	#create_prismatic_joint(MODEL,rope_joint)

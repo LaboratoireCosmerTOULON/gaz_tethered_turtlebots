@@ -93,9 +93,9 @@ def create_visual_sphere(root,rope_link):
     
 def create_velocity_decay(root,rope_link):
 	LINEAR	= ltr.SubElement(root,"linear")
-	LINEAR.text = str(0.07)
+	LINEAR.text = str(0.002) # functionava bem com 0.07
 	ANGULAR	= ltr.SubElement(root,"angular")
-	ANGULAR.text = str(0.07)
+	ANGULAR.text = str(0.002)
 	return
 
 def create_rope_link(root,rope_link):
@@ -158,10 +158,22 @@ def create_joint_physics(root):
     ODE = ltr.SubElement(PHYSICS,"ode")
     ISD = ltr.SubElement(ODE,"implicit_spring_damper")
     ISD.text = str(1)
+    #CFM_damp = ltr.SubElement(ODE,"cfm_damping")
+    #CFM_damp.text = str(1)
     CFM = ltr.SubElement(ODE,"cfm")
-    CFM.text = str(0)
+    CFM.text = str(0.000000001)#0.000000001
     ERP = ltr.SubElement(ODE,"erp")
-    ERP.text = str(0.8)
+    ERP.text = str(0.2)
+    #LIM = ltr.SubElement(ODE,"limit")
+    #CFM_lim = ltr.SubElement(LIM,"cfm")
+    #CFM_lim.text = str(0.000000001)
+    #ERP_lim = ltr.SubElement(LIM,"erp")
+    #ERP_lim.text = str(0.8)
+    #SUS = ltr.SubElement(ODE,"suspension")
+    #CFM_lim = ltr.SubElement(SUS,"cfm")
+    #CFM_lim.text = str(0.000000001)
+    #ERP_lim = ltr.SubElement(SUS,"erp")
+    #ERP_lim.text = str(0.8)
     return root
 
 def create_univ_joint(root,rope_joint):
@@ -175,6 +187,19 @@ def create_univ_joint(root,rope_joint):
     CHILD.text = str(rope_joint.child)
     create_axis(JOINT,rope_joint)
     create_axis2(JOINT,rope_joint)
+    create_joint_physics(JOINT)
+    return root
+    
+def create_rev_joint(root,rope_joint):
+    JOINT = ltr.SubElement(root, "joint", type="revolute", name=rope_joint.name)
+    POSE = ltr.SubElement(JOINT, "pose")
+    pose = rope_joint.pose
+    POSE.text 	= str(pose.x) +" "+str(pose.y)+" "+str(pose.z)+" "+ str(pose.phi) +" "+ str(pose.theta) +" "+str(pose.psi)
+    PARENT = ltr.SubElement(JOINT,"parent")
+    PARENT.text = str(rope_joint.parent)
+    CHILD = ltr.SubElement(JOINT,"child")
+    CHILD.text = str(rope_joint.child)
+    create_axis(JOINT,rope_joint)
     create_joint_physics(JOINT)
     return root
     

@@ -3,7 +3,7 @@
   <model name="turtlebot2">
 	  <!-- TURTLEBOT 2 --> 
      <link name='base_foot2print'>
-        <pose>1.27 0 0 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <inertial>
           <pose>0.00947362 2.50779e-05 0.014919 0 -0 0</pose>
           <mass>2.4723</mass>
@@ -829,7 +829,7 @@
         <kinematic>0</kinematic>
       </link>
       <link name='wheel2_left_link'>
-        <pose>1.27 0.115 0.0352 -1.5708 0 0</pose>
+        <pose>0 0.115 0.0352 -1.5708 0 0</pose>
         <inertial>
           <pose>0 0 0 0 -0 0</pose>
           <mass>0.01</mass>
@@ -901,7 +901,7 @@
         </axis>
       </joint>
       <link name='wheel2_right_link'>
-        <pose>1.27 -0.115 0.0352 -1.5708 0 0</pose>
+        <pose>0 -0.115 0.0352 -1.5708 0 0</pose>
         <inertial>
           <pose>0 0 0 0 -0 0</pose>
           <mass>0.01</mass>

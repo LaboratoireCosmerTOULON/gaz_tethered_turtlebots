@@ -3,7 +3,7 @@
   <model name="tethered_turtlebots">
  	<!-- TURTLEBOT 1 --> 
       <link name="base_foot1print">
-      <pose>0 0 0 0 -0 0</pose>
+      <pose>1.27 0 0 0 -0 0</pose>
         <inertial>
           <pose>0.00947362 2.50779e-05 0.014919 0 -0 0</pose>
           <mass>2.4723</mass>
@@ -830,7 +830,7 @@
         <kinematic>0</kinematic>
       </link>
       <link name="wheel1_left_link">
-        <pose>0 0.115 0.0352 -1.5708 0 0</pose>
+        <pose>1.27 0.115 0.0352 -1.5708 0 0</pose>
         <inertial>
           <pose>0 0 0 0 -0 0</pose>
           <mass>0.01</mass>
@@ -902,7 +902,7 @@
         </axis>
       </joint>
       <link name="wheel1_right_link">
-        <pose>0 -0.115 0.0352 -1.5708 0 0</pose>
+        <pose>1.27 -0.115 0.0352 -1.5708 0 0</pose>
         <inertial>
           <pose>0 0 0 0 -0 0</pose>
           <mass>0.01</mass>
@@ -992,7 +992,7 @@
       </plugin>
 	  <!-- TURTLEBOT 2 --> 
      <link name="base_foot2print">
-        <pose>1.27 0 0 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <inertial>
           <pose>0.00947362 2.50779e-05 0.014919 0 -0 0</pose>
           <mass>2.4723</mass>
@@ -1818,7 +1818,7 @@
         <kinematic>0</kinematic>
       </link>
       <link name="wheel2_left_link">
-        <pose>1.27 0.115 0.0352 -1.5708 0 0</pose>
+        <pose>0 0.115 0.0352 -1.5708 0 0</pose>
         <inertial>
           <pose>0 0 0 0 -0 0</pose>
           <mass>0.01</mass>
@@ -1890,7 +1890,7 @@
         </axis>
       </joint>
       <link name="wheel2_right_link">
-        <pose>1.27 -0.115 0.0352 -1.5708 0 0</pose>
+        <pose>0 -0.115 0.0352 -1.5708 0 0</pose>
         <inertial>
           <pose>0 0 0 0 -0 0</pose>
           <mass>0.01</mass>
@@ -2046,19 +2046,19 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_0" type="ball">
       <pose>-0.005 0.0 0.0 0.0 0.0 0.0</pose>
-      <parent>base_foot1print</parent>
+      <parent>base_foot2print</parent>
       <child>link_0</child>
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2128,8 +2128,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_1" type="ball">
@@ -2139,8 +2139,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2210,8 +2210,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_2" type="ball">
@@ -2221,8 +2221,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2292,8 +2292,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_3" type="ball">
@@ -2303,8 +2303,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2374,8 +2374,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_4" type="ball">
@@ -2385,8 +2385,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2456,8 +2456,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_5" type="ball">
@@ -2467,8 +2467,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2538,8 +2538,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_6" type="ball">
@@ -2549,8 +2549,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2620,8 +2620,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_7" type="ball">
@@ -2631,8 +2631,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2702,8 +2702,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_8" type="ball">
@@ -2713,8 +2713,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2784,8 +2784,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_9" type="ball">
@@ -2795,8 +2795,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2866,8 +2866,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_10" type="ball">
@@ -2877,8 +2877,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -2948,8 +2948,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_11" type="ball">
@@ -2959,8 +2959,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3030,8 +3030,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_12" type="ball">
@@ -3041,8 +3041,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3112,8 +3112,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_13" type="ball">
@@ -3123,8 +3123,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3194,8 +3194,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_14" type="ball">
@@ -3205,8 +3205,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3276,8 +3276,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_15" type="ball">
@@ -3287,8 +3287,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3358,8 +3358,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_16" type="ball">
@@ -3369,8 +3369,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3440,8 +3440,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_17" type="ball">
@@ -3451,8 +3451,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3522,8 +3522,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_18" type="ball">
@@ -3533,8 +3533,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3604,8 +3604,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_19" type="ball">
@@ -3615,8 +3615,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3686,8 +3686,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_20" type="ball">
@@ -3697,8 +3697,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3768,8 +3768,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_21" type="ball">
@@ -3779,8 +3779,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3850,8 +3850,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_22" type="ball">
@@ -3861,8 +3861,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -3932,8 +3932,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_23" type="ball">
@@ -3943,8 +3943,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4014,8 +4014,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_24" type="ball">
@@ -4025,8 +4025,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4096,8 +4096,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_25" type="ball">
@@ -4107,8 +4107,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4178,8 +4178,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_26" type="ball">
@@ -4189,8 +4189,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4260,8 +4260,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_27" type="ball">
@@ -4271,8 +4271,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4342,8 +4342,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_28" type="ball">
@@ -4353,8 +4353,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4424,8 +4424,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_29" type="ball">
@@ -4435,8 +4435,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4506,8 +4506,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_30" type="ball">
@@ -4517,8 +4517,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4588,8 +4588,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_31" type="ball">
@@ -4599,8 +4599,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4670,8 +4670,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_32" type="ball">
@@ -4681,8 +4681,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4752,8 +4752,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_33" type="ball">
@@ -4763,8 +4763,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4834,8 +4834,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_34" type="ball">
@@ -4845,8 +4845,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4916,8 +4916,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_35" type="ball">
@@ -4927,8 +4927,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -4998,8 +4998,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_36" type="ball">
@@ -5009,8 +5009,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5080,8 +5080,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_37" type="ball">
@@ -5091,8 +5091,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5162,8 +5162,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_38" type="ball">
@@ -5173,8 +5173,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5244,8 +5244,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_39" type="ball">
@@ -5255,8 +5255,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5326,8 +5326,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_40" type="ball">
@@ -5337,8 +5337,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5408,8 +5408,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_41" type="ball">
@@ -5419,8 +5419,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5490,8 +5490,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_42" type="ball">
@@ -5501,8 +5501,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5572,8 +5572,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_43" type="ball">
@@ -5583,8 +5583,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5654,8 +5654,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_44" type="ball">
@@ -5665,8 +5665,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5736,8 +5736,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_45" type="ball">
@@ -5747,8 +5747,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5818,8 +5818,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_46" type="ball">
@@ -5829,8 +5829,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5900,8 +5900,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_47" type="ball">
@@ -5911,8 +5911,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -5982,8 +5982,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_48" type="ball">
@@ -5993,8 +5993,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6064,8 +6064,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_49" type="ball">
@@ -6075,8 +6075,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6146,8 +6146,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_50" type="ball">
@@ -6157,8 +6157,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6228,8 +6228,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_51" type="ball">
@@ -6239,8 +6239,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6310,8 +6310,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_52" type="ball">
@@ -6321,8 +6321,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6392,8 +6392,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_53" type="ball">
@@ -6403,8 +6403,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6474,8 +6474,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_54" type="ball">
@@ -6485,8 +6485,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6556,8 +6556,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_55" type="ball">
@@ -6567,8 +6567,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6638,8 +6638,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_56" type="ball">
@@ -6649,8 +6649,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6720,8 +6720,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_57" type="ball">
@@ -6731,8 +6731,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6802,8 +6802,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_58" type="ball">
@@ -6813,8 +6813,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6884,8 +6884,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_59" type="ball">
@@ -6895,8 +6895,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -6966,8 +6966,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_60" type="ball">
@@ -6977,8 +6977,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7048,8 +7048,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_61" type="ball">
@@ -7059,8 +7059,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7130,8 +7130,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_62" type="ball">
@@ -7141,8 +7141,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7212,8 +7212,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_63" type="ball">
@@ -7223,8 +7223,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7294,8 +7294,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_64" type="ball">
@@ -7305,8 +7305,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7376,8 +7376,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_65" type="ball">
@@ -7387,8 +7387,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7458,8 +7458,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_66" type="ball">
@@ -7469,8 +7469,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7540,8 +7540,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_67" type="ball">
@@ -7551,8 +7551,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7622,8 +7622,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_68" type="ball">
@@ -7633,8 +7633,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7704,8 +7704,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_69" type="ball">
@@ -7715,8 +7715,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7786,8 +7786,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_70" type="ball">
@@ -7797,8 +7797,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7868,8 +7868,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_71" type="ball">
@@ -7879,8 +7879,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -7950,8 +7950,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_72" type="ball">
@@ -7961,8 +7961,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8032,8 +8032,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_73" type="ball">
@@ -8043,8 +8043,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8114,8 +8114,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_74" type="ball">
@@ -8125,8 +8125,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8196,8 +8196,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_75" type="ball">
@@ -8207,8 +8207,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8278,8 +8278,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_76" type="ball">
@@ -8289,8 +8289,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8360,8 +8360,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_77" type="ball">
@@ -8371,8 +8371,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8442,8 +8442,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_78" type="ball">
@@ -8453,8 +8453,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8524,8 +8524,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_79" type="ball">
@@ -8535,8 +8535,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8606,8 +8606,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_80" type="ball">
@@ -8617,8 +8617,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8688,8 +8688,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_81" type="ball">
@@ -8699,8 +8699,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8770,8 +8770,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_82" type="ball">
@@ -8781,8 +8781,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8852,8 +8852,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_83" type="ball">
@@ -8863,8 +8863,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -8934,8 +8934,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_84" type="ball">
@@ -8945,8 +8945,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9016,8 +9016,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_85" type="ball">
@@ -9027,8 +9027,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9098,8 +9098,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_86" type="ball">
@@ -9109,8 +9109,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9180,8 +9180,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_87" type="ball">
@@ -9191,8 +9191,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9262,8 +9262,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_88" type="ball">
@@ -9273,8 +9273,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9344,8 +9344,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_89" type="ball">
@@ -9355,8 +9355,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9426,8 +9426,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_90" type="ball">
@@ -9437,8 +9437,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9508,8 +9508,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_91" type="ball">
@@ -9519,8 +9519,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9590,8 +9590,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_92" type="ball">
@@ -9601,8 +9601,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9672,8 +9672,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_93" type="ball">
@@ -9683,8 +9683,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9754,8 +9754,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_94" type="ball">
@@ -9765,8 +9765,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9836,8 +9836,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_95" type="ball">
@@ -9847,8 +9847,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -9918,8 +9918,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_96" type="ball">
@@ -9929,8 +9929,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -10000,8 +10000,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_97" type="ball">
@@ -10011,8 +10011,8 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
@@ -10082,8 +10082,8 @@
         </material>
       </visual>
       <velocity_decay>
-        <linear>0.07</linear>
-        <angular>0.07</angular>
+        <linear>0.002</linear>
+        <angular>0.002</angular>
       </velocity_decay>
     </link>
     <joint name="joint_98" type="ball">
@@ -10093,20 +10093,20 @@
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
     <joint name="joint_99" type="ball">
       <pose>0.005 0.0 0.0 0.0 0.0 0.0</pose>
-      <parent>base_foot2print</parent>
+      <parent>base_foot1print</parent>
       <child>link_98</child>
       <physics>
         <ode>
           <implicit_spring_damper>1</implicit_spring_damper>
-          <cfm>0</cfm>
-          <erp>0.8</erp>
+          <cfm>1e-09</cfm>
+          <erp>0.2</erp>
         </ode>
       </physics>
     </joint>
