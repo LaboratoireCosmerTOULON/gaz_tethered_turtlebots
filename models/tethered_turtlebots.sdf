@@ -1,6 +1,29 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <model name="tethered_turtlebots">
+
+    <plugin name="p3d_link_0" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>30.0</updateRate>
+      <bodyName>link_0</bodyName>
+      <topicName>turtle2/tether_o/pose</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>world</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+
+    <plugin name="p3d_link_98" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>30.0</updateRate>
+      <bodyName>link_98</bodyName>
+      <topicName>turtle2/tether_f/pose</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>world</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+
  	<!-- TURTLEBOT 1 --> 
       <link name="base_foot1print">
       <pose>1.27 0 0 0 -0 0</pose>
