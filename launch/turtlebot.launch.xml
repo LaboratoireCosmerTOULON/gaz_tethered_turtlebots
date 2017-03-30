@@ -1,13 +1,12 @@
 <launch>
 
   <!-- Launch arguments -->
-  <arg name="model_name"/>
+  <arg name="model"/>
 
   <!-- Gazebo model spawner -->
-  <arg name="sdf_file" value="$(find gaz_tethered_turtlebots)/models/turtlebot1.sdf" />
-
+  <arg name="sdf_file" value="$(find gaz_tethered_turtlebots)/models/$(arg model).sdf" />
   <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
-	    args="-file $(arg sdf_file) -sdf -model $(arg model_name)"/>
+	    args="-file $(arg sdf_file) -sdf -model $(arg model)"/>
 
 </launch>
 

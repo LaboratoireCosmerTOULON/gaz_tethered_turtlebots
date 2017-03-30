@@ -1,4 +1,6 @@
 <launch>
+  <!-- Launch arguments -->
+  <arg name="model"/>
 
   <!-- general options -->
   <arg name="world_file"  default="$(find turtlebot_gazebo)/worlds/empty.world"/>
@@ -14,7 +16,7 @@
 
   <!-- spawn tethered turtlebots -->
   <include file="$(find gaz_tethered_turtlebots)/launch/turtlebot.launch.xml">
-    <arg name="model_name" value="tethered_turtlebots" />
+    <arg name="model" value="$(arg model)" />
   </include>
 
 </launch>
