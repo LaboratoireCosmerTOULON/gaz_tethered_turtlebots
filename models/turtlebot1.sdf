@@ -712,8 +712,7 @@
             <distortion_t2>0.0</distortion_t2>
             <pointCloudCutoff>0.4</pointCloudCutoff>
           </plugin>
- 		  <!-- Pose from real Trutlebot -->
-          <pose>-0.118 -0.01 0.285 0 -0 0</pose>
+          <pose>-0.118 -0.01 0.2812 0 -0 0</pose>
         </sensor>
         <velocity_decay>
           <linear>0</linear>
