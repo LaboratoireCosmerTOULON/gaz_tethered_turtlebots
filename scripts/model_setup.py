@@ -15,40 +15,54 @@ import sys
 from io import StringIO, BytesIO
 import decimal
 from gazebo_sdf import *
-from math import log10, acosh, sqrt, pow
+from math import log10, acosh, sqrt, tan, atan2, sin, cos, sinh, acosh
 from model_creator import *
 
-def calcT1Position(wPr2,s,rlen,hmax):
-	# WARNING: supposing only X-Y displacement, no rotation
+def changeRopePose(lines,wPo1,wPo2,s,rlink,rlen,hmax,n):
+	# WARNING: assuming only change in X and Y position
 	
-	# rope attach. pose at turtle2
-	r2Po2 = np.zeros(6)
-	r2Po2[0] = 0.135; r2Po2[2] = 0.41
+	# tether direction
+	Dx = wPo1[0] - wPo2[0]
+	Dy = wPo1[1] - wPo2[1]
+	theta = atan2(Dy,Dx)
+	tt = tan(theta)
+	print tt, theta*180/3.1416
 	
-	a = s[0] # h/hmax
-	b = s[1] # sin(theta)
-	h = a*hmax # rope sag
-
-	# Catenary constant
-	C = (2*h)/(rlen**2 - h**2);
-	# Span between attachment points
-	D = (1/C)*acosh(C*h + 1);
-	dx = 2*D*sqrt(1 - b**2)
-	dy = 2*D*b
+	# Some cat properties
+	dL = 0.01 # tether element length in meters
+	h = s[0]*hmax # sag
+	C = (2*h)/(rlen**2 - h**2); # Catenary constant
+	D = (1/C)*acosh(C*h + 1); # Span between attachment points
 	
-	# Sigma_1 pose expressed in Sigma_2
-	o2Po1 = np.zeros(6)
-	o2Po1[0] = dx; o2Po1[1] = dy;
+	# link pose (first link_0)
+	wPl = wPo2
+	dx = dL/sqrt(1 + tt**2 + 1/cos(theta)*sinh(C*wPl[1]/sin(theta) - C*D)**2)
+	dy = tt*dx
+	dz = 1/(sin(theta))*sinh(C*wPl[1]/sin(theta) - C*D)*dy
+	wPl[4] = -atan2(dz,dx)
+	wPl[5] = theta
 	
-	# rope attach. pose at turtle21
-	r1Po1 = np.zeros(6)
-	r1Po1[0] = -0.155; r1Po1[2] = 0.41;
-	o1Pr1 = -r1Po1
-	
-	# turtle1 pose in world frame
-	wPr1 = wPr2 + r2Po2 + o2Po1 + o1Pr1
-	
-	return wPr1
+	# line in model to be changed (l) and line step(dl)
+	l = 1982
+	dl = 82
+	for i in range(0,n):
+		#print wPl
+		lines[l] = "\t\t"+"<pose>"+str(wPl[0]) +" "+str(wPl[1])+" "+str(wPl[2])+" "+ str(wPl[3]) +" "+str(wPl[4]) +" "+str(wPl[5])+"</pose>"+"\n"
+		
+		# next tether element pose
+		dx = dL/sqrt(1 + tt**2 + 1/cos(theta)*sinh(C*wPl[1]/sin(theta) - C*D)**2)
+		dy = tt*dx
+		Y = wPl[1]# + 0.5*dy
+		dz = 1/(cos(theta))*sinh(C*Y/sin(theta) - C*D) * dx
+		wPl[0] = wPl[0] + dx
+		wPl[1] = wPl[1] + dy
+		wPl[2] = wPl[2] + dz
+		wPl[3] = -atan2(dz,dy)
+		wPl[4] = -atan2(dz,dx)
+		
+		l = l + dl
+	print wPl[2]
+	return lines
 	
 def changeTurtlePose(lines,wPr,n):
 	# WARNING: assuming only change in X and Y position
@@ -80,32 +94,41 @@ def changeTurtlePose(lines,wPr,n):
 	lines[rwl] = "\t\t"+"<pose>"+str(wPrw[0]) +" "+str(wPrw[1])+" "+str(wPrw[2])+" "+ str(wPrw[3]) +" "+str(wPrw[4]) +" "+str(wPrw[5])+"</pose>"+"\n"
 	
 	return lines
-	
-def changeRopePose(lines,t2p,rlink,n):
-	# WARNING: assuming only change in X and Y position
-	rlp = np.zeros(6) # rope link pose
-	rlp[0] = rlink.pose.x; rlp[1] = rlink.pose.y; rlp[2] = rlink.pose.z;
-	rlp[3] = rlink.pose.phi; rlp[4] = rlink.pose.theta; rlp[5] = rlink.pose.psi;
-	# rope link0 pose
-	rlp[0] = t2p[0] + rlp[0]
-	rlp[1] = t2p[1] + rlp[1]
-	
-	#float h = a*hmax_; # rope sag
-	# Catenary constant
-	#float C = 2*h/(pow(rlen,2) - pow(h,2));
-	# Span between attachment points
-	#float D = (1/C)*acosh(C*h + 1);
 
-	l = 1982
-	dl = 82
-	for i in range(0,n-1):
-		lines[l] = "\t\t"+"<pose>"+str(rlp[0]) +" "+str(rlp[1])+" "+str(rlp[2])+" "+ str(rlp[3]) +" "+str(rlp[4]) +" "+str(rlp[5])+"</pose>"+"\n"
-		rlp[0] = rlp[0] + rlink.length
-		l = l + dl
-		
-	return lines
+def configFrames(wPr2,s,rlink,rlen,hmax,nelem):
+	# calculate model frames main frame poses
+	# WARNING: supposing only X-Y displacement, no rotation
 	
-def configModel(script_dir,basefile,outfile,wPr1,wPr2,rlink,nelem):
+	# rope attach. pose at turtle2
+	r2Po2 = np.zeros(6)
+	r2Po2[0] = rlink.pose.x; r2Po2[2] = rlink.pose.z
+	
+	a = s[0] # h/hmax
+	b = s[1] # sin(theta)
+	h = a*hmax # rope sag
+
+	# Catenary constant
+	C = (2*h)/(rlen**2 - h**2);
+	# Span between attachment points
+	D = (1/C)*acosh(C*h + 1);
+	dx = 2*D*sqrt(1 - b**2)
+	dy = 2*D*b
+	
+	# Sigma_1 pose expressed in Sigma_2
+	o2Po1 = np.zeros(6)
+	o2Po1[0] = dx; o2Po1[1] = dy;
+	
+	# rope attach. pose at turtle1
+	r1Po1 = np.zeros(6)
+	r1Po1[0] = -0.15; r1Po1[2] = rlink.pose.z;
+	o1Pr1 = -r1Po1
+	
+	# turtle1 pose in world frame
+	wPr1 = wPr2 + r2Po2 + o2Po1 + o1Pr1
+	
+	return r2Po2, o2Po1, r1Po1, wPr1
+	
+def configModel(script_dir,basefile,outfile,wPr2,s,rlink,rlen,hmax,nelem):
 	# in and out files
 	inputfile_path = os.path.join(script_dir, basefile)
 	outputfile_path = os.path.join(script_dir, outfile)
@@ -116,9 +139,14 @@ def configModel(script_dir,basefile,outfile,wPr1,wPr2,rlink,nelem):
 	lines = fin.readlines()
 	
 	# modify turtlebot position
+	r2Po2, o2Po1, r1Po1, wPr1 = configFrames(wPr2,s,rlink,rlen,hmax,nelem)
 	changeTurtlePose(lines,wPr1,1)
 	changeTurtlePose(lines,wPr2,2)
-	changeRopePose(lines,wPr2,rlink,nelem)
+	
+	# modify rope position
+	wPo1 = wPr1 + r1Po1
+	wPo2 = wPr2 + r2Po2
+	changeRopePose(lines,wPo1,wPo2,s,rlink,rlen,hmax,nelem)
 	
 	# write new model in file
 	for line in lines:
@@ -152,10 +180,9 @@ def main():
 	# Turtlebots positions
 	# turtle2 pose = world origin
 	wPr2 = np.zeros(6)
-	wPr1 = calcT1Position(wPr2,s,rlen,hmax)
 	
 	# create rope link with the loaded settings
-	r2Po2 = Pose(0.1350, 0.0000, 0.4100, 0.0000, 0.0000, 0.0000) # Sigma_2 frame pose
+	r2Po2 = Pose(0.1300, 0.0000, 0.4000, 0.0000, 0.0000, 0.0000) # Sigma_2 frame pose
 	mo = Pose(0.0000, 0.0000, 0.0000, 0.0000, 1.5708, 0.0000) # rope elem center of mass
 	inertial = Inertial(mo,mass,ixx,ixy,ixz,iyy,iyz,izz)
 	ropelink = Rope_link("link_0", r2Po2, radius, length, min_depth, mu, mu2, inertial, color)
@@ -165,8 +192,8 @@ def main():
 	outFile = "../models/tethered_turtlebots.sdf"
 	file_path = os.path.join(script_dir, baseModelFile)
 	
-	# config models
-	configModel(script_dir,baseModelFile,outFile,wPr1,wPr2,ropelink,nelem)
+	# config model
+	configModel(script_dir,baseModelFile,outFile,wPr2,s,ropelink,rlen,hmax,nelem)
 	return
 
 if __name__ == "__main__":
