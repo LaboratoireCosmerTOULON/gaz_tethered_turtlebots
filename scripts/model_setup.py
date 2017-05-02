@@ -46,7 +46,7 @@ def changeRopePose(lines,wPo1,wPo2,s,rlink,rlen,hmax,n):
 	wPl[5] = theta
 	
 	# line in model to be changed (l) and line step(dl)
-	l = 1982
+	l = 2012
 	dl = 82
 
 	for i in range(0,n):
@@ -79,13 +79,13 @@ def changeTurtlePose(lines,wPr,n):
 	
 	# Lines to be modified (if turtle1 or turtle2)
 	if(n==1):
-		bl = 5 # base footprint line
-		lwl = 831 # left wheel line
-		rwl = 903 # right wheel line
+		bl = 35 # base footprint line
+		lwl = 861 # left wheel line
+		rwl = 933 # right wheel line
 	else:
-		bl = 993 # base footprint line
-		lwl = 1819 # left wheel line
-		rwl = 1891 # right wheel line
+		bl = 1023 # base footprint line
+		lwl = 1849 # left wheel line
+		rwl = 1921 # right wheel line
 		
 	# base_footprint
 	lines[bl] = "\t\t"+"<pose>"+str(wPr[0]) +" "+str(wPr[1])+" "+str(wPr[2])+" "+ str(wPr[3]) +" "+str(wPr[4]) +" "+str(wPr[5])+"</pose>"+"\n"
