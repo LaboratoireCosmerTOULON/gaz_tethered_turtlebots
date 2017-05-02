@@ -15,7 +15,7 @@ import sys
 from io import StringIO, BytesIO
 import decimal
 from gazebo_sdf import *
-from math import log10, acosh, sqrt, tan, atan2, sin, cos, sinh, acosh
+from math import log10, sqrt, tan, atan2, sin, asin, cos, sinh, acosh, pi
 from model_creator import *
 
 def changeRopePose(lines,wPo1,wPo2,s,rlink,rlen,hmax,n):
@@ -26,7 +26,7 @@ def changeRopePose(lines,wPo1,wPo2,s,rlink,rlen,hmax,n):
 	Dy = wPo1[1] - wPo2[1]
 	theta = atan2(Dy,Dx)
 	tt = tan(theta)
-	print tt, theta*180/3.1416
+	#print tt, theta*180/3.1416
 	
 	# Some cat properties
 	dL = 0.01 # tether element length in meters
@@ -36,32 +36,35 @@ def changeRopePose(lines,wPo1,wPo2,s,rlink,rlen,hmax,n):
 	
 	# link pose (first link_0)
 	wPl = wPo2
-	dx = dL/sqrt(1 + tt**2 + 1/cos(theta)*sinh(C*wPl[1]/sin(theta) - C*D)**2)
+	dx = dL/sqrt(1 + tt**2 + (sinh(C*wPl[1]/sin(theta) - C*D)/cos(theta))**2)
 	dy = tt*dx
-	dz = 1/(sin(theta))*sinh(C*wPl[1]/sin(theta) - C*D)*dy
-	wPl[4] = -atan2(dz,dx)
+	Y = wPl[1] + 0.5*dy
+	dz = sinh(C*Y/sin(theta) - C*D)/(cos(theta))*dx
+	print "dx dy dz ",dx, dy, dz
+	print "Y dz/dL ", Y, dz/dL
+	wPl[4] = asin(-dz/dL)
 	wPl[5] = theta
 	
 	# line in model to be changed (l) and line step(dl)
 	l = 1982
 	dl = 82
+
 	for i in range(0,n):
 		#print wPl
 		lines[l] = "\t\t"+"<pose>"+str(wPl[0]) +" "+str(wPl[1])+" "+str(wPl[2])+" "+ str(wPl[3]) +" "+str(wPl[4]) +" "+str(wPl[5])+"</pose>"+"\n"
 		
 		# next tether element pose
-		dx = dL/sqrt(1 + tt**2 + 1/cos(theta)*sinh(C*wPl[1]/sin(theta) - C*D)**2)
+		dx = dL/sqrt(1 + tt**2 + (sinh(C*wPl[1]/sin(theta) - C*D)/cos(theta))**2)
 		dy = tt*dx
-		Y = wPl[1]# + 0.5*dy
+		Y = wPl[1] + 0.5*dy
 		dz = 1/(cos(theta))*sinh(C*Y/sin(theta) - C*D) * dx
 		wPl[0] = wPl[0] + dx
 		wPl[1] = wPl[1] + dy
 		wPl[2] = wPl[2] + dz
-		wPl[3] = -atan2(dz,dy)
-		wPl[4] = -atan2(dz,dx)
+		wPl[3] = 0
+		wPl[4] = asin(-dz/dL)#-atan2(dz,dx)
 		
 		l = l + dl
-	print wPl[2]
 	return lines
 	
 def changeTurtlePose(lines,wPr,n):
