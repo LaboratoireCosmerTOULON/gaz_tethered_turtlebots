@@ -241,4 +241,3 @@ if __name__ == "__main__":
 	f.write('<?xml version="1.0" ?>\n')
 	f.write(ROOTstr)
 	f.close()
-
