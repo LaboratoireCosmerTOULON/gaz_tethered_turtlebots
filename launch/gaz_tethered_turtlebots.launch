@@ -1,20 +1,26 @@
 <launch>
 
-  <!-- general options -->
-  <arg name="world_file"  default="$(find gaz_tethered_turtlebots)/worlds/empty.world"/>
-  <arg name="gui" default="true"/>
+	<!-- tether parameters -->
+	<arg name="a0"/>
+	<arg name="b0"/>
 
-  <!-- start the world -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="use_sim_time" value="true"/>
-    <arg name="debug" value="false"/>
-    <arg name="gui" value="$(arg gui)" />
-    <arg name="world_name" value="$(arg world_file)"/>
-  </include>
+ 	<!-- load model -->
+	<node name="model_setup" pkg="gaz_tethered_turtlebots" type="model_setup.py" output="screen" args="$(arg a0) $(arg b0)"/>
 
-  <!-- spawn tethered turtlebots -->
-  <include file="$(find gaz_tethered_turtlebots)/launch/tethered_turtlebots.launch.xml">
-    <arg name="model_name" value="tethered_turtlebots" />
-  </include>
+	<!-- general options -->
+	<arg name="world_file"  default="$(find gaz_tethered_turtlebots)/worlds/empty.world"/>
+	<arg name="gui" default="true"/>
 
+	<!-- start the world -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="use_sim_time" value="true"/>
+		<arg name="debug" value="false"/>
+		<arg name="gui" value="$(arg gui)" />
+		<arg name="world_name" value="$(arg world_file)"/>
+	</include>
+
+	<!-- spawn tethered turtlebots -->
+		<include file="$(find gaz_tethered_turtlebots)/launch/tethered_turtlebots.launch.xml">
+		<arg name="model_name" value="tethered_turtlebots" />
+	</include>
 </launch>
