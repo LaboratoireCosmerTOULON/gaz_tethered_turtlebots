@@ -727,7 +727,7 @@
             <robotNamespace>/turtle1</robotNamespace>
             <cameraName>camera</cameraName>
             <alwaysOn>true</alwaysOn>
-            <updateRate>10</updateRate>
+            <updateRate>30</updateRate>
             <imageTopicName>rgb/image_raw</imageTopicName>
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
@@ -1715,7 +1715,7 @@
             <robotNamespace>/turtle2</robotNamespace>
             <cameraName>camera</cameraName>
             <alwaysOn>true</alwaysOn>
-            <updateRate>10</updateRate>
+            <updateRate>30</updateRate>
             <imageTopicName>rgb/image_raw</imageTopicName>
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
