@@ -1004,20 +1004,25 @@
       </joint>
       <static>0</static>
       <plugin name="kobuki1_controller" filename="libgazebo_ros_diff_drive.so">
-        <publish_tf>1</publish_tf>
+		<robotNamespace>/turtle1</robotNamespace>
+		<publish_tf>1</publish_tf>
+		<broadcasttf>1</broadcasttf>
+    	<commandTopic>cmd_vel</commandTopic>
+    	<odometryTopic>odom</odometryTopic>
+   	 	<odometryFrame>odom</odometryFrame>
+    	<robotBaseFrame>base_foot1print</robotBaseFrame>
         <leftJoint>wheel1_right_joint</leftJoint>
         <rightJoint>wheel1_left_joint</rightJoint>
         <wheelSeparation>.230</wheelSeparation>
         <wheelDiameter>0.070</wheelDiameter>
         <wheelTorque>1.0</wheelTorque>
         <velocity_command_timeout>0.6</velocity_command_timeout>
-        <cliff_sensor_left_name>cliff_sensor_left</cliff_sensor_left_name>
-        <cliff_sensor_center_name>cliff_sensor_front</cliff_sensor_center_name>
-        <cliff_sensor_right_name>cliff_sensor_right</cliff_sensor_right_name>
+        <cliff_sensor_left_name>cliff_sensor_left1</cliff_sensor_left_name>
+        <cliff_sensor_center_name>cliff_sensor_front1</cliff_sensor_center_name>
+        <cliff_sensor_right_name>cliff_sensor_right1</cliff_sensor_right_name>
         <cliff_detection_threshold>0.04</cliff_detection_threshold>
         <bumper_name>bumpers</bumper_name>
         <imu_name>imu</imu_name>
-        <robotNamespace>/turtle1</robotNamespace>
       </plugin>
 	  <!-- TURTLEBOT 2 --> 
      <link name="base_foot2print">
@@ -1992,7 +1997,13 @@
       </joint>
       <static>0</static>
       <plugin name="kobuki2_controller" filename="libgazebo_ros_diff_drive.so">
-        <publish_tf>1</publish_tf>
+		<robotNamespace>/turtle2</robotNamespace>
+		<publish_tf>1</publish_tf>
+		<broadcasttf>1</broadcasttf>
+    	<commandTopic>cmd_vel</commandTopic>
+    	<odometryTopic>odom</odometryTopic>
+   	 	<odometryFrame>odom</odometryFrame>
+    	<robotBaseFrame>base_foot2print</robotBaseFrame>
         <leftJoint>wheel2_right_joint</leftJoint>
         <rightJoint>wheel2_left_joint</rightJoint>
         <wheelSeparation>.230</wheelSeparation>
@@ -2005,7 +2016,6 @@
         <cliff_detection_threshold>0.04</cliff_detection_threshold>
         <bumper_name>bumpers</bumper_name>
         <imu_name>imu</imu_name>
-        <robotNamespace>/turtle2</robotNamespace>
       </plugin>
 
     <!--TETHER-->
