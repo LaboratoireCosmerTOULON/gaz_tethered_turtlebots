@@ -2,17 +2,17 @@
   <!-- Launch arguments -->
   <arg name="model"/>
 
-  <!-- general options -->
-  <arg name="world_file"  default="$(find turtlebot_gazebo)/worlds/empty.world"/>
-  <arg name="gui" default="true"/>
+	<!-- general options -->
+	<arg name="world_file"  default="$(find gaz_tethered_turtlebots)/worlds/empty.world"/>
+	<arg name="gui" default="true"/>
 
-  <!-- start the world -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="use_sim_time" value="true"/>
-    <arg name="debug" value="false"/>
-    <arg name="gui" value="$(arg gui)" />
-    <arg name="world_name" value="$(arg world_file)"/>
-  </include>
+	<!-- start the world -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="use_sim_time" value="true"/>
+		<arg name="debug" value="false"/>
+		<arg name="gui" value="$(arg gui)" />
+		<arg name="world_name" value="$(arg world_file)"/>
+	</include>
 
   <!-- spawn tethered turtlebots -->
   <include file="$(find gaz_tethered_turtlebots)/launch/turtlebot.launch.xml">
